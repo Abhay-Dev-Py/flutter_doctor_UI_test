@@ -1,4 +1,4 @@
-abstract class Strings {
+class Strings {
   static const unknownError = 'Unknow error! Please try again after some time.';
   static const connectionTimeout =
       'Connection timeout. Please try again after some time.';
@@ -39,4 +39,18 @@ abstract class Strings {
   static const to = 'To';
   static const success = 'Success';
   static const checkboxValidation = 'Dummy Checkbox Validation Message';
+
+  //...
+  static const helloLuke = 'Hello Luke,';
+
+  //..menuItems
+  static const hospital = 'Hospital';
+  static const consutant = 'Consutant';
+  static const recipe = 'Recipe';
+  static const appointment = 'Appointment';
+
+  static const title = '';
+  static const doctorName = 'dr.Ino Yamanaka';
+  static const post = 'Heart Specialist';
+  static const time1030 = '10:30 AM';
 }

@@ -4,6 +4,7 @@ import 'package:flutter_getx_template/app/common/values/app_colors.dart';
 import 'package:flutter_getx_template/app/common/values/styles/app_text_style.dart';
 import 'package:flutter_getx_template/app/common/values/styles/dimens.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 abstract class AppTheme {
   static ThemeData get theme {
