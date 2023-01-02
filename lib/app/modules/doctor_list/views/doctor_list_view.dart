@@ -1,11 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_getx_template/app/common/util/exports.dart';
-import 'package:flutter_getx_template/app/modules/home/controllers/home_controller.dart';
-import 'package:flutter_getx_template/app/modules/widgets/base_widget.dart';
-import 'package:flutter_getx_template/app/modules/widgets/custom_appbar_widget.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:date_picker_timeline/date_picker_timeline.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../controllers/doctor_list_controller.dart';
@@ -51,8 +47,20 @@ Widget _buildDot() {
   return Container(
     decoration:
         const BoxDecoration(shape: BoxShape.circle, color: Colors.black),
-    width: 15 / 2,
-    height: 15 / 2,
+    width: 8.w,
+    height: 8.h,
+  );
+}
+
+Widget _buildActiveDot(bool isOnline) {
+  return Card(
+    elevation: 5,
+    child: Container(
+      decoration: BoxDecoration(
+          shape: BoxShape.circle, color: isOnline ? Colors.green : Colors.red),
+      width: 8.w,
+      height: 8.h,
+    ),
   );
 }
 
@@ -160,7 +168,7 @@ Widget _buildListRow(
                 ),
               ),
             ),
-            Positioned(top: 20.h, child: _buildDot())
+            Positioned(bottom: 8.h, right: 2.h, child: _buildActiveDot(online))
           ],
         ),
         Column(

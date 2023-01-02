@@ -13,7 +13,7 @@ class MyAppController extends GetxController {
       const HomeView(),
       const FilePage(),
       const FilePage(),
-      DoctorListView(),
+      const DoctorListView(),
       const SettingPage(),
     ];
   }

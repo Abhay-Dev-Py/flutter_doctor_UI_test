@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_getx_template/app/common/util/exports.dart';
-import 'package:flutter_getx_template/app/modules/widgets/base_widget.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:date_picker_timeline/date_picker_timeline.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -9,8 +8,8 @@ import '../controllers/doctor_detail_controller.dart';
 class DoctorDetailView extends GetView<DoctorDetailController> {
   final String doctorName;
   final String post;
-  DoctorDetailController controller = DoctorDetailController();
-  DoctorDetailView(this.doctorName, this.post, {Key? key}) : super(key: key);
+  const DoctorDetailView(this.doctorName, this.post, {Key? key})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Obx(
@@ -18,6 +17,25 @@ class DoctorDetailView extends GetView<DoctorDetailController> {
         backgroundColor: Colors.blueAccent,
         body: Stack(
           children: [
+            Positioned(
+              top: 50,
+              left: 20,
+              child: GestureDetector(
+                onTap: Get.back,
+                child: Container(
+                  height: 40.h,
+                  width: 40.w,
+                  decoration: BoxDecoration(
+                    color: Colors.blueAccent[100],
+                    shape: BoxShape.circle,
+                  ),
+                  child: const Icon(
+                    Icons.arrow_back_ios_new_rounded,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
             Positioned(
               top: 150,
               left: 0,
@@ -52,7 +70,6 @@ class DoctorDetailView extends GetView<DoctorDetailController> {
 
             Positioned(
               top: 170.h,
-              left: 0,
               child: Container(
                 color: Colors.white,
                 child: Column(
@@ -116,7 +133,7 @@ class DoctorDetailView extends GetView<DoctorDetailController> {
           height: 80.h,
           decoration: BoxDecoration(
               color: Colors.blue.shade200.withOpacity(0.2),
-              borderRadius: BorderRadius.all(Radius.circular(12))),
+              borderRadius: const BorderRadius.all(Radius.circular(12))),
           child: Row(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -220,16 +237,26 @@ class DoctorDetailView extends GetView<DoctorDetailController> {
 
   Widget _buildDoctorDecr(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(bottom: 20.0.h, left: 10.w),
+      padding: EdgeInsets.symmetric(horizontal: 10.w),
       child: SizedBox(
         width: MediaQuery.of(context).size.width,
-        child: Text(
-          'Dr kabuto is a well-know and experienced\ndoctor in the field of liver specialists. He comes\nfrom Japan and is widely know... Read more',
-          maxLines: 3,
-          style: GoogleFonts.poppins(
-            fontSize: 15.sp,
-            color: Colors.grey,
-          ),
+        child: RichText(
+          text: TextSpan(
+              text:
+                  'Dr kabuto is a well-know and experienced\ndoctor in the field of liver specialists. He comes from Japan and is widely know... ',
+              style: GoogleFonts.poppins(
+                fontSize: 15.sp,
+                color: Colors.grey,
+              ),
+              children: [
+                TextSpan(
+                  text: " Read More",
+                  style: GoogleFonts.poppins(
+                    fontSize: 15.sp,
+                    color: Colors.blue,
+                  ),
+                ),
+              ]),
         ),
       ),
     );
@@ -274,25 +301,32 @@ class DoctorDetailView extends GetView<DoctorDetailController> {
 
   Widget _buildTimer(String time) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 8.0.w),
+      padding: EdgeInsets.symmetric(horizontal: 2.0.w),
       child: GestureDetector(
         onTap: () {
           controller.selectedTime.value = time;
         },
-        child: Container(
-          decoration: BoxDecoration(
-            color: setColor(time),
-            borderRadius: BorderRadius.all(
-              Radius.circular(12.r),
+        child: Card(
+          elevation: setTimeElevation(time),
+          color: Colors.transparent,
+          child: Container(
+            decoration: BoxDecoration(
+              color: setColor(time),
+              borderRadius: BorderRadius.all(
+                Radius.circular(12.r),
+              ),
             ),
-          ),
-          width: 80.w,
-          height: 35.h,
-          child: Center(
-            child: Text(
-              time,
-              style: GoogleFonts.poppins(
-                  fontSize: 14.sp, fontWeight: FontWeight.bold),
+            width: 80.w,
+            height: 35.h,
+            child: Center(
+              child: Text(
+                time,
+                style: GoogleFonts.poppins(
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.w500,
+                  color: setFontColor(time),
+                ),
+              ),
             ),
           ),
         ),
@@ -307,141 +341,15 @@ class DoctorDetailView extends GetView<DoctorDetailController> {
       return Colors.white;
     }
   }
-}
 
-Widget _buildRowCard(BuildContext context) {
-  return Padding(
-    padding: EdgeInsets.symmetric(horizontal: 10.w),
-    child: SizedBox(
-      width: MediaQuery.of(context).size.width - 20,
-      height: 80.h,
-      child: Card(
-        color: Colors.blue.withOpacity(0.2),
-        child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Patient',
-                style: GoogleFonts.poppins(
-                    color: Colors.lightBlue.withOpacity(0.8), fontSize: 20.sp),
-              ),
-              Text(
-                '1,560',
-                style: GoogleFonts.poppins(
-                    color: Colors.blue.withOpacity(0.8), fontSize: 20.sp),
-              ),
-            ],
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 12.h),
-            child: Container(
-              width: 2.w,
-              color: Colors.black,
-            ),
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Experience',
-                style: GoogleFonts.poppins(
-                    color: Colors.blue.withOpacity(0.8), fontSize: 20.sp),
-              ),
-              Row(
-                children: [
-                  Text(
-                    '10',
-                    style: GoogleFonts.poppins(
-                        color: Colors.blue.withOpacity(0.8), fontSize: 20.sp),
-                  ),
-                  Text(
-                    'gm',
-                    style: GoogleFonts.poppins(
-                        color: Colors.blue.withOpacity(0.8), fontSize: 20.sp),
-                  ),
-                ],
-              ),
-            ],
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 12.0.h),
-            child: Container(
-              width: 2,
-              color: Colors.black,
-            ),
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Rating',
-                style: GoogleFonts.poppins(
-                    color: Colors.blue.withOpacity(0.8), fontSize: 20.sp),
-              ),
-              Text(
-                '4.8',
-                style: GoogleFonts.poppins(
-                    color: Colors.blue.withOpacity(0.8), fontSize: 20.sp),
-              ),
-            ],
-          ),
-        ]),
-      ),
-    ),
-  );
-}
-
-Widget _buildAboutDoctor(BuildContext context, String title) {
-  return SizedBox(
-    width: MediaQuery.of(context).size.width,
-    child: Text(
-      title,
-      style: GoogleFonts.poppins(color: Colors.black, fontSize: 24.sp),
-    ),
-  );
-}
-
-Widget _buildDoctorDecr(BuildContext context) {
-  return Container(
-    width: MediaQuery.of(context).size.width,
-    child: Text(
-      'Dr kabuto is a well-know and experienced\ndoctor in the field of liver specialists. He comes\nfrom Japan and is widely know... Read more',
-      maxLines: 3,
-      style: GoogleFonts.poppins(
-        fontSize: 18,
-        color: Colors.grey,
-      ),
-    ),
-  );
-}
-
-Widget _buildDateRow() {
-  var controller = Get.find<DoctorDetailController>();
-  return Row(
-    children: [
-      for (int i = 0; i < 6; i++)
-        _buildDate(controller.date[i], controller.week[i]),
-    ],
-  );
-}
-
-Widget _buildDate(String date, String week) {
-  return Container(
-    decoration: BoxDecoration(color: setColor(date)),
-    width: 60,
-    height: 90,
-    child: Column(
-      children: [Text(date), Text(week)],
-    ),
-  );
-}
-
-Color setColor(String date) {
-  var contorller = Get.find<DoctorDetailController>();
-  if (date == contorller.selectedDate) {
-    return Colors.blue;
-  } else {
-    return Colors.white;
+  Color setFontColor(String time) {
+    if (time == controller.selectedTime.value) {
+      return Colors.white;
+    } else {
+      return Colors.black;
+    }
   }
+
+  double setTimeElevation(String time) =>
+      time == controller.selectedTime.value ? 4.0 : 0.0;
 }

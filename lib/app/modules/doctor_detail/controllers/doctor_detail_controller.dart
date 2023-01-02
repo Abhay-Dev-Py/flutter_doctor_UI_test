@@ -1,4 +1,4 @@
-import 'dart:ui';
+
 
 import 'package:date_picker_timeline/date_picker_widget.dart';
 import 'package:get/get.dart';
@@ -7,20 +7,9 @@ class DoctorDetailController extends GetxController {
   Rx<DateTime> selectedValue = DateTime.now().obs;
   DatePickerController controller = DatePickerController();
 
-  Color clr = Color(0xFFFCFCFC);
 
   DatePickerController datePickerController = DatePickerController();
-  String selectedDate = '08';
-  List week = ['Mon', 'Tue', 'Wed', 'Thrus', 'Fri', 'Sat'];
-
-  List date = [
-    '06',
-    '07',
-    '08',
-    '09',
-    '10',
-    '11',
-  ];
+  
   RxString selectedTime = '10:00 AM'.obs;
   List timer = [
     '08:00 AM',

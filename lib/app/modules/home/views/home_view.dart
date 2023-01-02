@@ -1,36 +1,37 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_getx_template/app/common/util/exports.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_getx_template/app/modules/home/controllers/home_controller.dart';
-import 'package:flutter_getx_template/app/modules/widgets/base_widget.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../doctor_detail/views/doctor_detail_view.dart';
+import '../../../common/strings.dart';
 
 class HomeView extends GetView<HomeController> {
   const HomeView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: SafeArea(
+    return  AnnotatedRegion<SystemUiOverlayStyle>(
+      value: SystemUiOverlayStyle.dark, 
       child: Scaffold(
-        body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 15.w),
-          child: ListView(
-            children: [
-              _buildHeader(),
-              _buildSearchBar(),
-              _buildListHeader(),
-              _buildHeaderLine('Appointment Today', 'Sell All'),
-              _buildCard(context),
-              _buildHeaderLine('Top Doctor\'s for you', 'Sell All'),
-              _buildsSecondCard()
-            ],
+          body: SafeArea(
+        child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 15.w),
+            child: ListView(
+              children: [
+                _buildHeader(),
+                _buildSearchBar(),
+                _buildListHeader(),
+                _buildHeaderLine('Appointment Today', 'See All'),
+                _buildCard(context),
+                _buildHeaderLine('Top Doctor\'s for you', 'See All'),
+                _buildsSecondCard()
+              ],
+            ),
           ),
-        ),
-      ),
-    ));
+      )),
+    );
   }
 }
 
@@ -296,7 +297,7 @@ Widget _buildCardDetail() {
 Widget _buildsSecondCard() {
   return GestureDetector(
     onTap: () {
-      Get.to(DoctorDetailView('dr.Kabuto Yakushi', 'Heart Specialist'));
+      Get.toNamed('/doctordetail');
     },
     child: Container(
       height: 150.h,

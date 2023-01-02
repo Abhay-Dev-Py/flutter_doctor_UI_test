@@ -22,12 +22,12 @@ abstract class AppPages {
     ),
     GetPage(
       name: _Paths.DOCTORDETAIL,
-      page: () => DoctorDetailView('dr.Kabuto Yakushi', 'Heart Specialist'),
+      page: () => const DoctorDetailView('dr.Kabuto Yakushi', 'Heart Specialist'),
       binding: DoctorDetailBinding(),
     ),
     GetPage(
         name: _Paths.MyApplication,
-        page: () => MyAppView(),
+        page: () => const MyAppView(),
         binding: MyAppBinding())
   ];
 }
