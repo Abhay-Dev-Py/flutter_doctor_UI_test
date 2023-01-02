@@ -1,8 +1,6 @@
 import 'dart:ui';
 
 import 'package:date_picker_timeline/date_picker_widget.dart';
-import 'package:flutter_getx_template/app/common/storage/storage.dart';
-import 'package:flutter_getx_template/app/data/api_helper.dart';
 import 'package:get/get.dart';
 
 class DoctorDetailController extends GetxController {

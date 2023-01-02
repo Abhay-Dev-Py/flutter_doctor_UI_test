@@ -239,20 +239,18 @@ class DoctorDetailView extends GetView<DoctorDetailController> {
     // return _abc(context);
     return SizedBox(
       width: MediaQuery.of(context).size.width,
-      child: Container(
-        child: DatePicker(
-          DateTime.now(),
-          width: 60,
-          height: 80,
-          controller: controller.controller,
-          initialSelectedDate: DateTime.now(),
-          selectionColor: Colors.blue,
-          selectedTextColor: Colors.white,
-          onDateChange: (date) {
-            // New date selected
-            controller.selectedValue.value = date;
-          },
-        ),
+      child: DatePicker(
+        DateTime.now(),
+        width: 60,
+        height: 80,
+        controller: controller.controller,
+        initialSelectedDate: DateTime.now(),
+        selectionColor: Colors.blue,
+        selectedTextColor: Colors.white,
+        onDateChange: (date) {
+          // New date selected
+          controller.selectedValue.value = date;
+        },
       ),
     );
   }
@@ -282,18 +280,22 @@ class DoctorDetailView extends GetView<DoctorDetailController> {
           controller.selectedTime.value = time;
         },
         child: Container(
-            decoration: BoxDecoration(
-                color: setColor(time),
-                borderRadius: BorderRadius.all(Radius.circular(12))),
-            width: 80.w,
-            height: 35.h,
-            child: Center(
-              child: Text(
-                time,
-                style: GoogleFonts.poppins(
-                    fontSize: 14.sp, fontWeight: FontWeight.bold),
-              ),
-            )),
+          decoration: BoxDecoration(
+            color: setColor(time),
+            borderRadius: BorderRadius.all(
+              Radius.circular(12.r),
+            ),
+          ),
+          width: 80.w,
+          height: 35.h,
+          child: Center(
+            child: Text(
+              time,
+              style: GoogleFonts.poppins(
+                  fontSize: 14.sp, fontWeight: FontWeight.bold),
+            ),
+          ),
+        ),
       ),
     );
   }

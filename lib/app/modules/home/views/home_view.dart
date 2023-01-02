@@ -23,7 +23,7 @@ class HomeView extends GetView<HomeController> {
               _buildSearchBar(),
               _buildListHeader(),
               _buildHeaderLine('Appointment Today', 'Sell All'),
-              _buildCard(),
+              _buildCard(context),
               _buildHeaderLine('Top Doctor\'s for you', 'Sell All'),
               _buildsSecondCard()
             ],
@@ -171,26 +171,49 @@ Widget _buildHeaderLine(String title, String seeAll) {
   );
 }
 
-Widget _buildCard() {
-  return Container(
-    height: 180.h,
-    decoration: BoxDecoration(
-      color: Colors.blue,
-      borderRadius: BorderRadius.all(
-        Radius.circular(
-          20.r,
+Widget _buildCard(BuildContext context) {
+  return Stack(
+    children: [
+      Padding(
+        padding: EdgeInsets.symmetric(horizontal: 20.0.w),
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.blueAccent.shade100,
+            borderRadius: BorderRadius.all(
+              Radius.circular(
+                20.r,
+              ),
+            ),
+          ),
+          height: 180.h,
+          width: MediaQuery.of(context).size.width - 60,
         ),
       ),
-    ),
-    width: double.infinity,
-    child: _buildCardDetail(),
+      Positioned(
+        top: 0.h,
+        left: 0.w,
+        child: Container(
+          height: 170.h,
+          decoration: BoxDecoration(
+            color: Colors.blue,
+            borderRadius: BorderRadius.all(
+              Radius.circular(
+                20.r,
+              ),
+            ),
+          ),
+          width: MediaQuery.of(context).size.width - 30.w,
+          child: _buildCardDetail(),
+        ),
+      ),
+    ],
   );
 }
 
 Widget _buildCardDetail() {
   return Padding(
     padding: EdgeInsets.symmetric(
-      vertical: 10.h,
+      vertical: 8.h,
       horizontal: 20.w,
     ),
     child: Column(
@@ -203,18 +226,20 @@ Widget _buildCardDetail() {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               SizedBox(
-                width: 70.w,
-                height: 70.h,
+                width: 60.w,
+                height: 60.h,
                 child: const CircleAvatar(
                   backgroundImage: AssetImage('assets/images/female.png'),
                 ),
               ),
               SizedBox(
-                height: 70.h,
-                child: const CircleAvatar(
+                width: 60.w,
+                height: 60.h,
+                child: CircleAvatar(
+                  backgroundColor: Colors.white.withOpacity(0.5),
                   child: Icon(
                     Icons.message,
-                    size: 20,
+                    size: 30.w,
                     color: Colors.white,
                   ),
                 ),
